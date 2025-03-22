@@ -1,7 +1,7 @@
 import { Agentica } from "@agentica/core";
-import typia from "typia";
 import dotenv from "dotenv";
 import { OpenAI } from "openai";
+import typia from "typia";
 
 import { GithubService } from "@wrtnlabs/connector-github";
 
@@ -20,7 +20,10 @@ export const agent = new Agentica({
       name: "Github Connector",
       protocol: "class",
       application: typia.llm.application<GithubService, "chatgpt">(),
-      execute: new GithubService(),
+      execute: new GithubService({
+        secret: process.env.GITHUB_ACCESS_TOKEN!,
+        aws: {},
+      }),
     },
   ],
 });
