@@ -21,8 +21,7 @@ export const agent = new Agentica({
       protocol: "class",
       application: typia.llm.application<GithubService, "chatgpt">(),
       execute: new GithubService({
-        secret: process.env.GITHUB_ACCESS_TOKEN!,
-        aws: {},
+        githubRefreshToken: process.env.GITHUB_ACCESS_TOKEN!,
       }),
     },
   ],
